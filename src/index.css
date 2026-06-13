@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* ── Global reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  color: #111;
+  background: #fff;
+  line-height: 1.6;
+}
+
+@layer base {
+  p, li, dd, dt, blockquote {
+    text-align: justify;
+  }
+}
+
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ── Selection ── */
+::selection {
+  background: #e60024;
+  color: #fff;
+}
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid #e60024;
+  outline-offset: 2px;
+}

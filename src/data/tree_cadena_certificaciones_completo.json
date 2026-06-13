@@ -1,0 +1,1137 @@
+{
+  "bot_format_version": "1.0",
+  "title": "Bot de Cadena de Certificaciones - Legalización y Apostilla Perú",
+  "language": "es",
+  "metadata": {
+    "description": "Árbol de decisiones determinístico para Telegram, basado en el PDF Cadena de Certificaciones y complementado con orientación vigente de Gob.pe/MRE.",
+    "last_updated_by_chatgpt": "2026-06-12",
+    "general_notice": [
+      "La entidad emisora es responsable del registro y actualización de firma de sus funcionarios.",
+      "Los documentos con firma digital deben contar con metodología de verificación digital.",
+      "La apostilla o legalización certifica firma y cargo del funcionario; no valida el contenido del documento."
+    ],
+    "general_current_info": {
+      "mre_email": "legalizacionyapostillatrc@rree.gob.pe",
+      "presential_cost": "S/. 31.00",
+      "digital_cost": "S/. 18.00 para trámites digitales que califiquen, según FAQ del MRE.",
+      "digital_requirement": "PDF con firma electrónica y mecanismo de verificación como QR, link u otro similar.",
+      "digital_portal": "Portal de Servicios del MRE",
+      "free_education_note": "La legalización/apostilla de grados, títulos o certificados de estudios emitidos a ciudadanos peruanos puede ser gratuita, según orientación vigente del MRE."
+    },
+    "sources": [
+      {
+        "type": "uploaded_pdf",
+        "title": "Cadena de Certificaciones"
+      },
+      {
+        "type": "official_web",
+        "title": "Gob.pe - Apostilla y Legalización",
+        "url": "https://www.gob.pe/37288-apostilla-y-legalizacion"
+      },
+      {
+        "type": "official_web",
+        "title": "Gob.pe - Apostillar y legalizar documentos digitales",
+        "url": "https://www.gob.pe/37302-apostilla-y-legalizacion-apostillar-y-legalizar-documentos-digitales"
+      },
+      {
+        "type": "official_web",
+        "title": "Gob.pe - Atención presencial previo registro en línea",
+        "url": "https://www.gob.pe/37301-apostilla-y-legalizacion-atencion-presencial-previo-registro-en-linea"
+      },
+      {
+        "type": "official_web",
+        "title": "Gob.pe - Preguntas frecuentes sobre Apostilla y Legalización",
+        "url": "https://www.gob.pe/institucion/rree/campa%C3%B1as/34738-preguntas-frecuentes-sobre-apostilla-y-legalizacion"
+      }
+    ]
+  },
+  "nodes": {
+    "inicio": {
+      "type": "menu",
+      "text": "¿Qué tipo de documento deseas legalizar o apostillar?",
+      "options": [
+        {
+          "label": "Información general",
+          "next": "cat_info_general"
+        },
+        {
+          "label": "Educación",
+          "next": "cat_educacion"
+        },
+        {
+          "label": "Identidad y estado civil",
+          "next": "cat_estado_civil"
+        },
+        {
+          "label": "Religiosos",
+          "next": "cat_religiosos"
+        },
+        {
+          "label": "Salud y colegios profesionales",
+          "next": "cat_salud_profesionales"
+        },
+        {
+          "label": "Antecedentes y migraciones",
+          "next": "cat_antecedentes_migraciones"
+        },
+        {
+          "label": "Notariales, laborales, Estado y judiciales",
+          "next": "cat_notariales_laborales_estado_judiciales"
+        },
+        {
+          "label": "Traducciones",
+          "next": "cat_traducciones"
+        },
+        {
+          "label": "Consulares o extranjeros",
+          "next": "cat_consulares_extranjeros"
+        }
+      ]
+    },
+    "cat_info_general": {
+      "type": "menu",
+      "text": "Información general sobre apostilla y legalización:",
+      "options": [
+        {
+          "label": "Diferencia apostilla/legalización",
+          "next": "info_diferencia"
+        },
+        {
+          "label": "Costos y gratuidad",
+          "next": "info_costos"
+        },
+        {
+          "label": "Trámite digital",
+          "next": "info_digital"
+        },
+        {
+          "label": "Trámite presencial",
+          "next": "info_presencial"
+        },
+        {
+          "label": "Contacto MRE",
+          "next": "info_contacto_mre"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "info_diferencia": {
+      "type": "result",
+      "parent": "cat_info_general",
+      "document_number": 0,
+      "title": "Diferencia entre apostilla y legalización",
+      "requirements": [
+        "Apostilla: para documentos públicos peruanos que serán usados en países miembros del Convenio de La Haya.",
+        "Legalización: para documentos que serán usados en países que no forman parte del Convenio de La Haya o para certificar firmas consulares peruanas o de funcionarios extranjeros acreditados en el Perú.",
+        "En ambos casos, el documento debe contar con la cadena de certificaciones correspondiente.",
+        "La apostilla o legalización certifica firma y cargo del funcionario; no valida el contenido del documento."
+      ],
+      "cost": "Según modalidad",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma de autoridad competente registrada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Ministerio de Relaciones Exteriores",
+        "email": "legalizacionyapostillatrc@rree.gob.pe"
+      },
+      "source_pdf_pages": [],
+      "tags": []
+    },
+    "info_costos": {
+      "type": "result",
+      "parent": "cat_info_general",
+      "document_number": 0,
+      "title": "Costos y gratuidad",
+      "requirements": [
+        "Costo general presencial: S/. 31.00.",
+        "Costo digital: S/. 18.00 para documentos que califican como trámite digital.",
+        "En atención presencial con registro en línea, el pago se realiza por Pagalo.pe, salvo gratuidad o tarifa especial.",
+        "La gratuidad puede aplicar a grados, títulos o certificados de estudios emitidos a ciudadanos peruanos.",
+        "En documentos consulares extranjeros puede existir tarifa adicional por reintegro consular."
+      ],
+      "cost": "S/. 31.00 presencial / S/. 18.00 digital si aplica",
+      "free_condition": "Documentos educativos emitidos a ciudadanos peruanos pueden estar exonerados, según tipo documental.",
+      "previous_signatures": [],
+      "contact_info": {
+        "institution": "Ministerio de Relaciones Exteriores"
+      },
+      "source_pdf_pages": [],
+      "tags": []
+    },
+    "info_digital": {
+      "type": "result",
+      "parent": "cat_info_general",
+      "document_number": 0,
+      "title": "Trámite digital",
+      "requirements": [
+        "Documento en PDF, claro y legible.",
+        "Debe estar firmado electrónicamente por funcionario público correspondiente.",
+        "Debe contar con mecanismo de verificación de emisión: código QR, enlace u otro similar.",
+        "El funcionario firmante debe estar registrado en el Ministerio de Relaciones Exteriores.",
+        "El servicio admite 1 documento por solicitud.",
+        "El MRE menciona como documentos digitales posibles: antecedentes penales, antecedentes judiciales, constancias SUNEDU, traducciones oficiales digitales, traducciones certificadas digitales, constancias ONP y constancias de Migraciones."
+      ],
+      "cost": "S/. 18.00 si califica como trámite digital",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma digital verificable de funcionario registrado"
+      ],
+      "contact_info": {
+        "institution": "Ministerio de Relaciones Exteriores",
+        "portal": "Portal de Servicios del MRE"
+      },
+      "source_pdf_pages": [],
+      "tags": []
+    },
+    "info_presencial": {
+      "type": "result",
+      "parent": "cat_info_general",
+      "document_number": 0,
+      "title": "Trámite presencial previo registro en línea",
+      "requirements": [
+        "Documento de identidad: DNI para peruanos; Carné de Extranjería o pasaporte para extranjeros.",
+        "Documento público con la cadena de certificaciones correspondiente.",
+        "Verifica la cadena antes de iniciar el proceso.",
+        "Paga el derecho de trámite cuando corresponda.",
+        "Registra la solicitud en el Portal de Servicios del MRE y entrega el documento en la oficina seleccionada."
+      ],
+      "cost": "S/. 31.00, salvo gratuidad o tarifa especial",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma de autoridad competente registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Ministerio de Relaciones Exteriores",
+        "email": "legalizacionyapostillatrc@rree.gob.pe"
+      },
+      "source_pdf_pages": [],
+      "tags": []
+    },
+    "info_contacto_mre": {
+      "type": "result",
+      "parent": "cat_info_general",
+      "document_number": 0,
+      "title": "Contacto para apostilla y legalización",
+      "requirements": [
+        "Para consultas generales usa los canales oficiales del Ministerio de Relaciones Exteriores.",
+        "Verifica la cadena de certificaciones antes de pagar o registrar una solicitud."
+      ],
+      "cost": "No aplica",
+      "free_condition": "",
+      "previous_signatures": [],
+      "contact_info": {
+        "institution": "Ministerio de Relaciones Exteriores",
+        "email": "legalizacionyapostillatrc@rree.gob.pe",
+        "portal": "Portal de Servicios del MRE"
+      },
+      "source_pdf_pages": [],
+      "tags": []
+    },
+    "cat_educacion": {
+      "type": "menu",
+      "text": "Selecciona el documento educativo:",
+      "options": [
+        {
+          "label": "1. Certificados EBR",
+          "next": "doc_01"
+        },
+        {
+          "label": "2. Títulos/certificados no universitarios",
+          "next": "doc_02"
+        },
+        {
+          "label": "3. Constancias no universitarias",
+          "next": "doc_03"
+        },
+        {
+          "label": "4. Documentos universidades nacionales",
+          "next": "doc_04"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_estado_civil": {
+      "type": "menu",
+      "text": "Selecciona el documento de identidad o estado civil:",
+      "options": [
+        {
+          "label": "5. Actas municipales",
+          "next": "doc_05"
+        },
+        {
+          "label": "6. Constancia de soltería municipal",
+          "next": "doc_06"
+        },
+        {
+          "label": "7. Actas RENIEC",
+          "next": "doc_07"
+        },
+        {
+          "label": "8. Constancias RENIEC",
+          "next": "doc_08"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_religiosos": {
+      "type": "menu",
+      "text": "Selecciona el documento religioso:",
+      "options": [
+        {
+          "label": "9. Actas y constancias religiosas",
+          "next": "doc_09"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_salud_profesionales": {
+      "type": "menu",
+      "text": "Selecciona el documento de salud o colegio profesional:",
+      "options": [
+        {
+          "label": "10. Certificados médicos",
+          "next": "doc_10"
+        },
+        {
+          "label": "11. Colegios profesionales",
+          "next": "doc_11"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_antecedentes_migraciones": {
+      "type": "menu",
+      "text": "Selecciona el documento de antecedentes o migraciones:",
+      "options": [
+        {
+          "label": "12. Antecedentes penales",
+          "next": "doc_12"
+        },
+        {
+          "label": "13. Antecedentes judiciales",
+          "next": "doc_13"
+        },
+        {
+          "label": "14. Antecedentes policiales",
+          "next": "doc_14"
+        },
+        {
+          "label": "15. Migraciones",
+          "next": "doc_15"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_notariales_laborales_estado_judiciales": {
+      "type": "menu",
+      "text": "Selecciona el documento notarial, laboral, estatal o judicial:",
+      "options": [
+        {
+          "label": "16. Documentos notariales",
+          "next": "doc_16"
+        },
+        {
+          "label": "17. Constancias trabajo/prácticas",
+          "next": "doc_17"
+        },
+        {
+          "label": "18. Funcionarios del Estado",
+          "next": "doc_18"
+        },
+        {
+          "label": "19. Actuados judiciales",
+          "next": "doc_19"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_traducciones": {
+      "type": "menu",
+      "text": "Selecciona el tipo de traducción:",
+      "options": [
+        {
+          "label": "20. Traductor Público Juramentado",
+          "next": "doc_20"
+        },
+        {
+          "label": "21. Colegio de Traductores",
+          "next": "doc_21"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "cat_consulares_extranjeros": {
+      "type": "menu",
+      "text": "Selecciona el documento consular o extranjero:",
+      "options": [
+        {
+          "label": "22. Consulados peruanos",
+          "next": "doc_22"
+        },
+        {
+          "label": "23. Consular extranjero en Perú",
+          "next": "doc_23"
+        },
+        {
+          "label": "24. Extranjero + consulado extranjero",
+          "next": "doc_24"
+        },
+        {
+          "label": "25. Extranjero + consulado peruano",
+          "next": "doc_25"
+        }
+      ],
+      "parent": "inicio"
+    },
+    "doc_01": {
+      "type": "result",
+      "parent": "cat_educacion",
+      "document_number": 1,
+      "title": "Legalización o Apostilla en Certificados de Estudios de Primaria y Secundaria u otros niveles de Educación Básica Regular - E.B.R.",
+      "requirements": [
+        "Certificados de estudios con código modular y código QR emitidos en línea.",
+        "Expedidos por instituciones educativas: firmados por el director y legalizados por el Ministerio de Educación.",
+        "Expedidos por el MINEDU: legalizados por el Ministerio de Educación.",
+        "Formato tradicional amarillo: solo expedidos hasta 2020; original firmado por UGEL y Ministerio de Educación.",
+        "Si la institución educativa está en cierre o cierre definitivo: certificado original expedido por UGEL, firmado por UGEL y Ministerio de Educación.",
+        "Para España, se recomienda firma previa de UGEL y Ministerio de Educación.",
+        "Comprobante de pago por derecho de tramitación, salvo gratuidad.",
+        "Si tiene firma digital, debe contar con metodología de verificación digital."
+      ],
+      "cost": "S/. 31.00 / GRATIS si aplica",
+      "free_condition": "Gratis acreditando condición de peruano; sin restricción en cantidad de documentos.",
+      "previous_signatures": [
+        "Director de la institución educativa, cuando corresponda",
+        "UGEL, cuando corresponda",
+        "Ministerio de Educación - MINEDU"
+      ],
+      "contact_info": {
+        "institution": "MINEDU",
+        "area": "Archivo de Actas y Certificados",
+        "address": "Calle Del Comercio N.º 193, San Borja",
+        "phone": "(01) 224-0131",
+        "website": "http://www.gob.pe/minedu"
+      },
+      "source_pdf_pages": [
+        1
+      ],
+      "tags": [
+        "educacion",
+        "ebr",
+        "minedu",
+        "ugel"
+      ]
+    },
+    "doc_02": {
+      "type": "result",
+      "parent": "cat_educacion",
+      "document_number": 2,
+      "title": "Legalización o Apostilla en Títulos y Certificados de Estudios de Educación Superior Tecnológica, Pedagógica y Artística no universitaria",
+      "requirements": [
+        "Título anterior a 2016: documento original firmado por Dirección Regional competente y Ministerio de Educación.",
+        "Certificado de estudio anterior a 2018: documento original firmado por Dirección Regional competente y Ministerio de Educación.",
+        "Título desde 2016: documento original firmado por Ministerio de Educación.",
+        "Certificado de estudio desde 2018: documento original firmado por Ministerio de Educación; bajo evaluación del MINEDU.",
+        "Certificados CETPRO: documento original firmado por UGEL competente y Ministerio de Educación.",
+        "Comprobante de pago por derecho de tramitación, salvo gratuidad."
+      ],
+      "cost": "S/. 31.00 / GRATIS si aplica",
+      "free_condition": "Gratis acreditando condición de peruano; sin restricción en cantidad de documentos.",
+      "previous_signatures": [
+        "Dirección Regional competente, cuando corresponda",
+        "UGEL competente para CETPRO",
+        "Ministerio de Educación - MINEDU"
+      ],
+      "contact_info": {
+        "institution": "MINEDU",
+        "website": "http://www.gob.pe/minedu"
+      },
+      "source_pdf_pages": [
+        1,
+        2
+      ],
+      "tags": [
+        "instituto",
+        "cetpro",
+        "minedu"
+      ]
+    },
+    "doc_03": {
+      "type": "result",
+      "parent": "cat_educacion",
+      "document_number": 3,
+      "title": "Legalización o Apostilla en Constancias y otras Certificaciones de Educación Superior Tecnológica, Pedagógica y Artística no universitaria",
+      "requirements": [
+        "Documento original y copia certificada.",
+        "Debe estar certificado por la autoridad regional competente y por el Ministerio de Educación.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Verificar si aplica exoneración para documentos educativos emitidos a ciudadanos peruanos."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "El PDF consigna S/. 31.00; la orientación vigente del MRE indica gratuidad para algunos documentos educativos a ciudadanos peruanos.",
+      "previous_signatures": [
+        "Autoridad Regional competente",
+        "Ministerio de Educación - MINEDU"
+      ],
+      "contact_info": {
+        "institution": "MINEDU",
+        "website": "http://www.gob.pe/minedu"
+      },
+      "source_pdf_pages": [
+        2
+      ],
+      "tags": [
+        "constancias",
+        "minedu"
+      ]
+    },
+    "doc_04": {
+      "type": "result",
+      "parent": "cat_educacion",
+      "document_number": 4,
+      "title": "Legalización o Apostilla en Certificados de Estudios, Diplomas de Grados Académicos, Diplomas de Título Profesional y otras Constancias de Universidades Nacionales",
+      "requirements": [
+        "El documento universitario debe contar con Constancia de Verificación de Datos de Autoridades y/o Constancia de Inscripción emitida por SUNEDU.",
+        "La constancia debe ser emitida por el funcionario a cargo de la Dirección de Documentación e Información Universitaria y Registro de Grados y Títulos de SUNEDU.",
+        "Comprobante de pago por derecho de tramitación, salvo exoneración.",
+        "Las constancias SUNEDU pueden calificar para trámite digital si cumplen los requisitos digitales del MRE."
+      ],
+      "cost": "S/. 31.00 / GRATIS si aplica",
+      "free_condition": "Constancia de Verificación para certificado de estudio, grado o título expedida a ciudadanos peruanos acreditados: exonerada de pago.",
+      "previous_signatures": [
+        "Jefe de la Unidad de Registros de Grados y Títulos de SUNEDU, con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "SUNEDU",
+        "address": "Calle Aldabas N.º 317, Urb. Las Gardenias, Santiago de Surco",
+        "phone": "(01) 500-3930",
+        "website": "http://enlinea.sunedu.gob.pe"
+      },
+      "source_pdf_pages": [
+        2
+      ],
+      "tags": [
+        "sunedu",
+        "universidad",
+        "grado",
+        "titulo"
+      ]
+    },
+    "doc_05": {
+      "type": "result",
+      "parent": "cat_estado_civil",
+      "document_number": 5,
+      "title": "Legalización o Apostilla en copias certificadas de Actas de Nacimiento, Matrimonio o Defunción emitidas por Oficinas de Registros Civiles municipales",
+      "requirements": [
+        "Vigencia sugerida: no mayor a 3 meses.",
+        "Acta certificada por el Registrador Civil de la Municipalidad.",
+        "Legalizada por el Autenticador de firmas del RENIEC.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Certificador del RENIEC con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "RENIEC",
+        "offices": "Lima, Piura, Puno, Iquitos, Arequipa y Tacna",
+        "website_1": "http://www.reniec.gob.pe/portal/detalleNota.htm?nota=070",
+        "website_2": "http://www.reniec.gob.pe/portal/tramiteGeneral.htm"
+      },
+      "source_pdf_pages": [
+        2
+      ],
+      "tags": [
+        "actas",
+        "municipalidad",
+        "reniec"
+      ]
+    },
+    "doc_06": {
+      "type": "result",
+      "parent": "cat_estado_civil",
+      "document_number": 6,
+      "title": "Legalización o Apostilla en Certificados o Constancias de Soltería expedidos por Municipalidades",
+      "requirements": [
+        "Vigencia sugerida: no mayor a 3 meses.",
+        "Certificado o Constancia de Soltería original.",
+        "Certificado por el Registrador Civil municipal.",
+        "Legalizado por el Autenticador de firmas del RENIEC.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Certificador del RENIEC con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "RENIEC",
+        "website": "http://www.reniec.gob.pe/portal/tramiteGeneral.htm"
+      },
+      "source_pdf_pages": [
+        2
+      ],
+      "tags": [
+        "solteria",
+        "reniec"
+      ]
+    },
+    "doc_07": {
+      "type": "result",
+      "parent": "cat_estado_civil",
+      "document_number": 7,
+      "title": "Legalización o Apostilla en copias certificadas de Actas de Nacimiento, Matrimonio o Defunción emitidas por RENIEC",
+      "requirements": [
+        "Vigencia sugerida: no mayor a 3 meses.",
+        "Acta certificada por el Certificador del RENIEC.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Certificador del RENIEC con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "RENIEC",
+        "website": "http://www.reniec.gob.pe/portal/tramiteGeneral.htm"
+      },
+      "source_pdf_pages": [
+        2
+      ],
+      "tags": [
+        "reniec",
+        "actas"
+      ]
+    },
+    "doc_08": {
+      "type": "result",
+      "parent": "cat_estado_civil",
+      "document_number": 8,
+      "title": "Legalización o Apostilla en Constancias de Inscripción de Matrimonio y otras certificaciones emitidas por RENIEC",
+      "requirements": [
+        "Vigencia sugerida: no mayor a 3 meses.",
+        "Constancia certificada por el Certificador del RENIEC.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Certificador del RENIEC con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "RENIEC"
+      },
+      "source_pdf_pages": [
+        3
+      ],
+      "tags": [
+        "reniec",
+        "constancia"
+      ]
+    },
+    "doc_09": {
+      "type": "result",
+      "parent": "cat_religiosos",
+      "document_number": 9,
+      "title": "Legalización o Apostilla en actas y constancias religiosas reconocidas por la Iglesia Católica en el Perú",
+      "requirements": [
+        "Aplica a bautismo, confirmación, matrimonio, defunción, otros sacramentos, constancias de no registro y cartas de invitación.",
+        "Documento eclesiástico original y copias certificadas.",
+        "Legalización por el Arzobispado de la jurisdicción correspondiente.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Obispo",
+        "Vicario General",
+        "Canciller",
+        "Vicecanciller",
+        "Notario eclesiástico",
+        "Firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Arzobispado de Lima",
+        "address": "Jr. Chancay N.º 282, Cercado de Lima",
+        "phone": "(01) 203-7700",
+        "website": "http://www.arzobispadodelima.org/index.php?option=com_content&view=article&id=id=45"
+      },
+      "source_pdf_pages": [
+        3
+      ],
+      "tags": [
+        "religioso",
+        "iglesia catolica"
+      ]
+    },
+    "doc_10": {
+      "type": "result",
+      "parent": "cat_salud_profesionales",
+      "document_number": 10,
+      "title": "Legalización o Apostilla en Certificados Médicos y otros documentos emitidos por Profesionales en Medicina Humana",
+      "requirements": [
+        "Certificados, informes médicos, constancias u otros documentos originales.",
+        "Legalizados por el área o funcionario competente del Ministerio de Salud, EsSalud o Decano del Colegio Médico del Perú, según origen.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Funcionario competente de EsSalud",
+        "Funcionario competente del Ministerio de Salud",
+        "Médico que expide y Decano del Colegio Médico del Perú"
+      ],
+      "contact_info": {
+        "minsa": "Av. Salaverry N.º 801, Jesús María. Tel. (01) 315-6600. https://gob.pe/minsa",
+        "essalud": "Av. Arenales N.º 1302, Jesús María. Tel. (511) 265-6000. http://www.essalud.gob.pe",
+        "cmp": "Av. 28 de Julio 776, Miraflores. Tel. (01) 641-9847. https://www.cmp.org.pe"
+      },
+      "source_pdf_pages": [
+        3
+      ],
+      "tags": [
+        "salud",
+        "medico"
+      ]
+    },
+    "doc_11": {
+      "type": "result",
+      "parent": "cat_salud_profesionales",
+      "document_number": 11,
+      "title": "Legalización o Apostilla en Certificados o Constancias emitidas por Colegios Profesionales",
+      "requirements": [
+        "Certificados, constancias originales o copias certificadas.",
+        "Certificación por el Decano del Colegio Profesional correspondiente o funcionario competente.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma del profesional colegiado",
+        "Firma del representante del Colegio Profesional competente registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Colegio profesional correspondiente"
+      },
+      "source_pdf_pages": [
+        4
+      ],
+      "tags": [
+        "colegio profesional"
+      ]
+    },
+    "doc_12": {
+      "type": "result",
+      "parent": "cat_antecedentes_migraciones",
+      "document_number": 12,
+      "title": "Legalización o Apostilla en Certificados de Antecedentes Penales",
+      "requirements": [
+        "Certificado digital emitido por el Registro Nacional de Condenas.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Puede calificar para trámite digital si cumple los requisitos del MRE."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Funcionario competente del Registro Nacional de Condenas con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Registro Nacional de Condenas",
+        "address": "Av. Abancay s/n, cuadra 5",
+        "phone": "(01) 410-1414 anexos 12013 o 12145",
+        "website": "http://www.pj.gob.pe"
+      },
+      "source_pdf_pages": [
+        4
+      ],
+      "tags": [
+        "antecedentes penales",
+        "digital"
+      ]
+    },
+    "doc_13": {
+      "type": "result",
+      "parent": "cat_antecedentes_migraciones",
+      "document_number": 13,
+      "title": "Legalización o Apostilla en Certificados de Antecedentes Judiciales",
+      "requirements": [
+        "Certificado original, físico o digital, emitido por el Instituto Nacional Penitenciario.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Puede calificar para trámite digital si cumple los requisitos del MRE."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Funcionario competente del INPE con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "INPE",
+        "address": "Jr. Carabaya N.º 456, Lima",
+        "phone": "(01) 426-1578",
+        "website": "http://www.gob.pe/inpe"
+      },
+      "source_pdf_pages": [
+        4
+      ],
+      "tags": [
+        "antecedentes judiciales",
+        "digital"
+      ]
+    },
+    "doc_14": {
+      "type": "result",
+      "parent": "cat_antecedentes_migraciones",
+      "document_number": 14,
+      "title": "Legalización o Apostilla en Certificados de Antecedentes Policiales",
+      "requirements": [
+        "Certificado original emitido por la División de Identificación Criminalística de la PNP.",
+        "Documento emitido para viaje al extranjero o uso en el extranjero.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Jefe del departamento de antecedentes policiales de la División de Criminalística con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Dirección de Criminalística - PNP",
+        "address": "Av. Aramburú N.º 550, Surquillo",
+        "phone": "(01) 222-7364",
+        "website": "https://www.policia.gob.pe/home/servicios"
+      },
+      "source_pdf_pages": [
+        4
+      ],
+      "tags": [
+        "antecedentes policiales",
+        "pnp"
+      ]
+    },
+    "doc_15": {
+      "type": "result",
+      "parent": "cat_antecedentes_migraciones",
+      "document_number": 15,
+      "title": "Legalización o Apostilla en documentos expedidos por Migraciones y Naturalización del Ministerio del Interior",
+      "requirements": [
+        "Documento original o copia certificada por funcionarios del área competente, según corresponda.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Algunas constancias de Migraciones pueden calificar para trámite digital si cumplen requisitos del MRE."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Certificador del área competente que emite el documento, con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "DIGEMIN / Migraciones",
+        "address": "Av. España N.º 731, Breña",
+        "phone": "(01) 417-6900",
+        "website": "http://www.gob.pe/migraciones"
+      },
+      "source_pdf_pages": [
+        4
+      ],
+      "tags": [
+        "migraciones",
+        "digital"
+      ]
+    },
+    "doc_16": {
+      "type": "result",
+      "parent": "cat_notariales_laborales_estado_judiciales",
+      "document_number": 16,
+      "title": "Legalización o Apostilla en documentos notariales",
+      "requirements": [
+        "Documento protocolar o extra protocolar original expedido por Notario Público peruano.",
+        "Documentos privados: original con legalización de firma notarial como persona natural y/o jurídica, según naturaleza del documento.",
+        "Estados de cuenta, cartas de referencia bancaria y similares: legalización de copia notarial.",
+        "Documentos protocolares, extra protocolares, legalizaciones de firmas y copias notariales deben tener certificación del Colegio de Notarios de la jurisdicción o Junta de Decanos.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Si tiene más de una página, debe contar con sello de unión y/o numeración correlativa."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Representante del Colegio de Notarios de la jurisdicción",
+        "O representante de la Junta de Decanos de los Colegios de Notarios del Perú",
+        "Firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Junta de Decanos de los Colegios de Notarios del Perú",
+        "address": "Paseo de la República N.º 3565, Of. 801-802, San Isidro",
+        "phone": "(01) 422-8160",
+        "website": "https://www.juntadedecanos.org.pe/#/home"
+      },
+      "source_pdf_pages": [
+        5
+      ],
+      "tags": [
+        "notarial"
+      ]
+    },
+    "doc_17": {
+      "type": "result",
+      "parent": "cat_notariales_laborales_estado_judiciales",
+      "document_number": 17,
+      "title": "Legalización o Apostilla en constancia de trabajo, prácticas profesionales, prácticas preprofesionales y otros",
+      "requirements": [
+        "Institución pública: original o copia certificada por fedatario de la institución pública.",
+        "Documento privado con emisión menor a 3 años: original con legalización de firma notarial de persona jurídica de quien suscribe.",
+        "Documento privado con emisión mayor a 3 años: original o copia certificada por fedatario o certificador del Ministerio de Trabajo.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [],
+      "contact_info": {
+        "institution": "Ministerio de Trabajo",
+        "address": "Av. Gral. Salaverry 655, Jesús María 15072",
+        "phone": "(01) 630-6000 anexo 1066 / 1099; (01) 630-6030 anexo 1066 / 1099",
+        "website": "https://www.gob.pe/mtpe"
+      },
+      "source_pdf_pages": [
+        5
+      ],
+      "tags": [
+        "trabajo",
+        "practicas"
+      ]
+    },
+    "doc_18": {
+      "type": "result",
+      "parent": "cat_notariales_laborales_estado_judiciales",
+      "document_number": 18,
+      "title": "Legalización o Apostilla en documentos emitidos por funcionarios del Estado",
+      "requirements": [
+        "Documento original o copia certificada por fedatario o certificador del área competente.",
+        "Comprobante de pago por derecho de tramitación.",
+        "La copia de expedientes de actos registrales municipales debe ser certificada únicamente por el registrador civil de la misma municipalidad."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Funcionario competente de emisión o certificación de documentos de la entidad, con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Entidad pública emisora"
+      },
+      "source_pdf_pages": [
+        6
+      ],
+      "tags": [
+        "estado",
+        "funcionario publico"
+      ]
+    },
+    "doc_19": {
+      "type": "result",
+      "parent": "cat_notariales_laborales_estado_judiciales",
+      "document_number": 19,
+      "title": "Legalización o Apostilla en documentos provenientes de actuados judiciales",
+      "requirements": [
+        "Documento original o copia certificada por el presidente de la Corte Superior de Justicia de la jurisdicción que emite o certifica los documentos.",
+        "Comprobante de pago por derecho de tramitación."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Funcionario competente en emisión o certificación de documentos judiciales",
+        "Presidente de la Corte Superior de Justicia de la jurisdicción, con firma registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Poder Judicial",
+        "website": "https://www.gob.pe/es/institucion/pj/tema/documentos-certificados-y-legalizaciones"
+      },
+      "source_pdf_pages": [
+        6
+      ],
+      "tags": [
+        "poder judicial"
+      ]
+    },
+    "doc_20": {
+      "type": "result",
+      "parent": "cat_traducciones",
+      "document_number": 20,
+      "title": "Legalización o Apostilla en traducciones efectuadas por Traductores Públicos Juramentados",
+      "requirements": [
+        "Traducción oficial física o digital firmada por Traductor Público Juramentado, según Manual de Traductores Públicos Juramentados.",
+        "El documento de origen y la traducción deben estar unidos formalmente por el Traductor Público Juramentado.",
+        "Traducción Oficial sin Certificación Oficial física o digital firmada por Traductor Público Juramentado: solo posible para uso en territorio peruano.",
+        "El documento de origen debe contar con cadena de certificación, apostilla del país de origen o legalización/certificación por oficina consular peruana en el exterior y por el MRE.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Las traducciones oficiales digitales pueden calificar para trámite digital si cumplen requisitos del MRE."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma del Traductor Público Juramentado registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "directory": "http://www.consulado.pe/paginas/traductores.aspx",
+        "manual": "http://www.consulado.pe/Documents/Traductores/ManualdeTraductoresPublicosJuramentados-anexo-RM-0545-2020-RE.pdf"
+      },
+      "source_pdf_pages": [
+        6
+      ],
+      "tags": [
+        "traduccion",
+        "tpj",
+        "digital"
+      ]
+    },
+    "doc_21": {
+      "type": "result",
+      "parent": "cat_traducciones",
+      "document_number": 21,
+      "title": "Legalización o Apostilla en traducciones efectuadas por traductor certificado por el Colegio de Traductores del Perú",
+      "requirements": [
+        "Traducción certificada física o digital firmada por un representante del Colegio de Traductores del Perú.",
+        "El documento de origen y la traducción deben estar unidos formalmente por el traductor colegiado.",
+        "El documento de origen debe contar con la cadena de certificación correspondiente.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Las traducciones certificadas digitales pueden calificar para trámite digital si cumplen requisitos del MRE."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma del Traductor Colegiado",
+        "Firma del representante del Colegio de Traductores del Perú registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Colegio de Traductores del Perú",
+        "website": "https://www.colegiodetraductores.org.pe/"
+      },
+      "source_pdf_pages": [
+        6
+      ],
+      "tags": [
+        "traduccion certificada",
+        "digital"
+      ]
+    },
+    "doc_22": {
+      "type": "result",
+      "parent": "cat_consulares_extranjeros",
+      "document_number": 22,
+      "title": "Legalización en documentos expedidos y/o certificados por funcionarios de Oficinas Consulares peruanas en el exterior",
+      "requirements": [
+        "Documento original o copia certificada expedida por funcionario consular competente.",
+        "Comprobante de pago por derecho de tramitación.",
+        "El PDF lo consigna como legalización, no como apostilla."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma del funcionario consular del Perú en el exterior registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Directorio de Oficinas Consulares del Perú",
+        "website": "http://www.consulado.pe/paginas/Inicio.aspx"
+      },
+      "source_pdf_pages": [
+        7
+      ],
+      "tags": [
+        "consular",
+        "legalizacion"
+      ]
+    },
+    "doc_23": {
+      "type": "result",
+      "parent": "cat_consulares_extranjeros",
+      "document_number": 23,
+      "title": "Legalización en documentos expedidos y/o copias certificadas por funcionario consular extranjero acreditado en el Perú",
+      "requirements": [
+        "Documento original o copia certificada expedida por funcionario consular competente.",
+        "Comprobante de pago por derecho de tramitación.",
+        "No requiere legalización previa.",
+        "El PDF lo consigna como legalización, no como apostilla."
+      ],
+      "cost": "S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma del funcionario consular extranjero acreditado en el Perú registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Consulado extranjero acreditado en el Perú / MRE"
+      },
+      "source_pdf_pages": [
+        7
+      ],
+      "tags": [
+        "consular extranjero",
+        "legalizacion"
+      ]
+    },
+    "doc_24": {
+      "type": "result",
+      "parent": "cat_consulares_extranjeros",
+      "document_number": 24,
+      "title": "Legalización en documentos extranjeros legalizados o certificados por funcionario del Consulado extranjero acreditado en el Perú",
+      "requirements": [
+        "Documento original o copia certificada expedida por funcionario consular competente.",
+        "Comprobante de pago por derecho de tramitación.",
+        "Recibo y comprobante de pago por reintegro consular.",
+        "Tarifa 14 = $20 para autorización de viaje consular peruano sin timbres consulares.",
+        "Tarifa 15B = $10 para poder fuera de registro para cobro de pensiones sin timbres consulares.",
+        "Tarifa 16B = $10 para carta poder consular peruana para cobro de pensiones sin timbres consulares.",
+        "Tarifa 20B = $31.25 por legalización de certificación notarial sin disposición especial.",
+        "Tarifa 22A = $37.50 por legalización de firmas de autoridades extranjeras acreditadas en Perú, incluida Nunciatura Apostólica.",
+        "Tarifa 22A = $30.00 para documentos expedidos por la Santa Sede a ciudadanos extranjeros.",
+        "Tarifa 23 = $1.25 para títulos profesionales o certificados de estudios otorgados en el extranjero a favor de nacionales, incluida Nunciatura Apostólica.",
+        "Tarifa 23 = $1.00 para títulos profesionales o certificados de estudios a favor de nacionales expedidos por la Santa Sede.",
+        "Tarifa 28A = $1.00 para certificado de supervivencia consular peruano sin timbres consulares."
+      ],
+      "cost": "Pago de tarifa por Reintegro Consular + S/. 31.00",
+      "free_condition": "",
+      "previous_signatures": [
+        "Firma del funcionario consular extranjero acreditado en Perú registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "MRE / Consulado extranjero acreditado en Perú"
+      },
+      "source_pdf_pages": [
+        7,
+        8
+      ],
+      "tags": [
+        "reintegro consular",
+        "documento extranjero"
+      ]
+    },
+    "doc_25": {
+      "type": "result",
+      "parent": "cat_consulares_extranjeros",
+      "document_number": 25,
+      "title": "Legalización en documentos extranjeros legalizados o certificados por funcionario de Consulado peruano en el exterior",
+      "requirements": [
+        "Documento original o copia certificada expedida por funcionario consular competente.",
+        "Cartas Poder: vigencia de 3 meses desde su emisión.",
+        "Poderes Fuera de Registro: vigencia de 1 año desde su emisión.",
+        "Escrituras Públicas: vigencia hasta su revocatoria.",
+        "Comprobante de pago por derecho de tramitación, salvo gratuidad.",
+        "La legalización de firma consular peruana sobre documentos de estudio expedidos por entidades extranjeras es gratuita acreditando nacionalidad peruana del titular.",
+        "El PDF lo consigna como legalización, no como apostilla."
+      ],
+      "cost": "S/. 31.00 / GRATIS si aplica",
+      "free_condition": "Gratis para documentos de estudio expedidos por entidades extranjeras, acreditando nacionalidad peruana del titular.",
+      "previous_signatures": [
+        "Firma del funcionario consular del Perú en el exterior registrada y actualizada en Cancillería"
+      ],
+      "contact_info": {
+        "institution": "Directorio de Oficinas Consulares del Perú",
+        "website": "http://www.consulado.pe/paginas/Inicio.aspx"
+      },
+      "source_pdf_pages": [
+        9
+      ],
+      "tags": [
+        "consulado peruano",
+        "documento extranjero"
+      ]
+    }
+  }
+}
