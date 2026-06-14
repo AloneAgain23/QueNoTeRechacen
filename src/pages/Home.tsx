@@ -17,6 +17,36 @@ import {
   ChevronDown,
 } from "lucide-react";
 
+/* ─── Responsive hook ─── */
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = () => setMatches(media.matches);
+
+    if (media.addEventListener) {
+      media.addEventListener("change", listener);
+    } else {
+      media.addListener(listener);
+    }
+
+    return () => {
+      if (media.removeEventListener) {
+        media.removeEventListener("change", listener);
+      } else {
+        media.removeListener(listener);
+      }
+    };
+  }, [query]);
+
+  return matches;
+}
+
 /* ─── Animated counter ─── */
 function useCounter(target: number, duration = 1800, start = false) {
   const [value, setValue] = useState(0);
@@ -79,7 +109,7 @@ const products = [
     id: "ia",
     title: "ChatBot",
     description:
-      "Chatbot que responde tus dudas sobre legalizaciones con datos oficiales (opcional: se puede implementar una API de IA).",
+      "Chatbot que responde tus dudas sobre legalizaciones con datos oficiales.",
     icon: <Sparkles className="w-6 h-6" />,
     link: "/chatbot",
     isExternal: false,
@@ -89,7 +119,7 @@ const products = [
     id: "gpt",
     title: "GPT Especializado",
     description:
-      "Modelo entrenado con normativa peruana vigente para casos complejos (requiere tener una cuenta en ChatGPT).",
+      "Modelo entrenado con normativa peruana vigente para casos complejos.",
     icon: <Bot className="w-6 h-6" />,
     link: "https://chatgpt.com/g/g-6a2d940fc458819198582eada11bee96-apostilla-facil-peru",
     isExternal: true,
@@ -98,7 +128,7 @@ const products = [
     id: "telegram",
     title: "Bot en Telegram",
     description:
-      "Consultas rápidas desde tu celular, disponible 24/7 en nuestra cuenta oficial. (Si estás en tu computadora y usas Telegram Web, solo busca en tu lupa: @ApostillaFacil_Bot)",
+      "Consultas rápidas desde tu celular, disponible 24/7 en nuestra cuenta oficial.",
     icon: <Send className="w-6 h-6" />,
     link: "https://t.me/ApostillaFacil_Bot",
     isExternal: true,
@@ -129,8 +159,15 @@ function SectionLabel({
   label: string;
   align?: "left" | "center";
 }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
-    <div style={{ marginBottom: 40, textAlign: align }}>
+    <div
+      style={{
+        marginBottom: isMobile ? 28 : 40,
+        textAlign: isMobile ? "center" : align,
+      }}
+    >
       <p
         style={{
           color: "#e60024",
@@ -146,7 +183,7 @@ function SectionLabel({
       <h2
         style={{
           fontFamily: "'Georgia', 'Times New Roman', serif",
-          fontSize: "clamp(2rem, 5vw, 3rem)",
+          fontSize: "clamp(2rem, 8vw, 3rem)",
           fontWeight: 900,
           color: "#111",
           lineHeight: 1.1,
@@ -161,6 +198,9 @@ function SectionLabel({
 
 /* ─── Component ─── */
 export default function Home() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isSmallMobile = useMediaQuery("(max-width: 420px)");
+
   const { ref: statRef, inView: statInView } = useInView(0.5);
   const counter = useCounter(30, 1600, statInView);
 
@@ -173,6 +213,7 @@ export default function Home() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
+        overflowX: "hidden",
       }}
     >
       {/* ══ HEADER ══ */}
@@ -189,14 +230,22 @@ export default function Home() {
           style={{
             maxWidth: 1100,
             margin: "0 auto",
-            padding: "14px 24px",
+            padding: isMobile ? "12px 16px" : "14px 24px",
             display: "flex",
-            alignItems: "center",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: isMobile ? "flex-start" : "center",
             justifyContent: "space-between",
-            gap: 16,
+            gap: isMobile ? 10 : 16,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              width: isMobile ? "100%" : "auto",
+            }}
+          >
             <div
               style={{
                 width: 32,
@@ -212,29 +261,52 @@ export default function Home() {
               <Stamp size={16} color="#fff" />
             </div>
 
-            <div>
-              <span style={{ fontWeight: 800, fontSize: 16, color: "#111" }}>
+            <div style={{ minWidth: 0 }}>
+              <span
+                style={{
+                  fontWeight: 800,
+                  fontSize: isSmallMobile ? 14 : 16,
+                  color: "#111",
+                  display: isSmallMobile ? "block" : "inline",
+                }}
+              >
                 #QueNoTeRechacen
               </span>
-              <span style={{ color: "#e60024", fontWeight: 400, fontSize: 16 }}>
+
+              <span
+                style={{
+                  color: "#e60024",
+                  fontWeight: 400,
+                  fontSize: isSmallMobile ? 14 : 16,
+                  display: isSmallMobile ? "block" : "inline",
+                }}
+              >
                 {" "}
                 ApostillaFácil
               </span>
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              flexWrap: "wrap",
+              width: isMobile ? "100%" : "auto",
+            }}
+          >
             <div
               style={{
-                display: "flex",
+                display: "inline-flex",
                 alignItems: "center",
                 gap: 6,
                 border: "1px solid #e5e7eb",
                 borderRadius: 999,
-                padding: "6px 14px",
-                fontSize: 12,
+                padding: "6px 12px",
+                fontSize: 11,
                 color: "#6b7280",
-                whiteSpace: "nowrap",
+                whiteSpace: "normal",
               }}
             >
               <ShieldCheck size={13} color="#10b981" />
@@ -246,11 +318,11 @@ export default function Home() {
                 background: "#fff0f1",
                 border: "1px solid #fca5a5",
                 borderRadius: 999,
-                padding: "6px 14px",
-                fontSize: 12,
+                padding: "6px 12px",
+                fontSize: 11,
                 color: "#e60024",
                 fontWeight: 700,
-                whiteSpace: "nowrap",
+                whiteSpace: "normal",
               }}
             >
               Desafío 12 · MRE
@@ -265,14 +337,15 @@ export default function Home() {
           maxWidth: 1100,
           margin: "0 auto",
           width: "100%",
-          padding: "0 24px",
+          padding: isMobile ? "0 16px" : "0 24px",
+          boxSizing: "border-box",
         }}
       >
         {/* ══ HERO ══ */}
         <section
           style={{
-            paddingTop: 80,
-            paddingBottom: 72,
+            paddingTop: isMobile ? 56 : 80,
+            paddingBottom: isMobile ? 52 : 72,
             borderBottom: "1.5px solid #e5e7eb",
             display: "flex",
             flexDirection: "column",
@@ -292,8 +365,9 @@ export default function Home() {
               fontSize: 12,
               color: "#c2410c",
               fontWeight: 600,
-              marginBottom: 32,
+              marginBottom: isMobile ? 24 : 32,
               letterSpacing: 0.5,
+              textAlign: "center",
             }}
           >
             <AlertTriangle size={13} />
@@ -303,32 +377,36 @@ export default function Home() {
           <h1
             style={{
               fontFamily: "'Georgia','Times New Roman',serif",
-              fontSize: "clamp(2.6rem,6vw,4.5rem)",
+              fontSize: "clamp(2.15rem, 11vw, 4.5rem)",
               fontWeight: 900,
               color: "#111",
-              lineHeight: 1.1,
+              lineHeight: 1.08,
               maxWidth: 900,
-              margin: "0 0 24px",
+              margin: "0 0 22px",
               textAlign: "center",
+              letterSpacing: "-0.03em",
             }}
           >
             No vayas a apostillar
             <br />
-            <span style={{ color: "#e60024" }}>sin antes ver estas herramientas.</span>
+            <span style={{ color: "#e60024" }}>
+              sin antes ver estas herramientas.
+            </span>
           </h1>
 
           <p
             style={{
-              fontSize: 17,
+              fontSize: isMobile ? 15 : 17,
               color: "#6b7280",
               maxWidth: 850,
               lineHeight: 1.7,
-              margin: "0 0 32px",
+              margin: "0 0 30px",
               textAlign: "center",
             }}
           >
-            La cadena de certificaciones para apostillar varía según tu documento
-            y país de destino. Conocerla antes te ahorra semanas de trámite y que rechacen tu solicitud.
+            La cadena de certificaciones para apostillar varía según tu
+            documento y país de destino. Conocerla antes te ahorra semanas de
+            trámite y que rechacen tu solicitud.
           </p>
 
           <a
@@ -349,21 +427,12 @@ export default function Home() {
               color: "#fff",
               borderRadius: 999,
               padding: "12px 22px",
+              minHeight: 44,
               fontSize: 14,
               fontWeight: 800,
               textDecoration: "none",
               boxShadow: "0 8px 20px rgba(230,0,36,0.18)",
               transition: "transform 0.15s, box-shadow 0.15s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow =
-                "0 10px 26px rgba(230,0,36,0.24)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow =
-                "0 8px 20px rgba(230,0,36,0.18)";
             }}
           >
             Ver herramientas
@@ -375,10 +444,10 @@ export default function Home() {
         <section
           id="herramientas"
           style={{
-            paddingTop: 40,
-            paddingBottom: 48,
+            paddingTop: isMobile ? 36 : 40,
+            paddingBottom: isMobile ? 42 : 48,
             borderBottom: "1.5px solid #e5e7eb",
-            scrollMarginTop: 90,
+            scrollMarginTop: isMobile ? 130 : 90,
           }}
         >
           <SectionLabel number="01" label="Las herramientas" />
@@ -386,8 +455,10 @@ export default function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 20,
+              gridTemplateColumns: isMobile
+                ? "1fr"
+                : "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: isMobile ? 16 : 20,
             }}
           >
             {products.map((p) => {
@@ -396,7 +467,7 @@ export default function Home() {
                   style={{
                     border: "1.5px solid #e5e7eb",
                     borderRadius: 16,
-                    padding: "24px 22px",
+                    padding: isMobile ? "22px 18px" : "24px 22px",
                     display: "flex",
                     flexDirection: "column",
                     gap: 14,
@@ -405,6 +476,7 @@ export default function Home() {
                     background: "#fff",
                     height: "100%",
                     position: "relative",
+                    boxSizing: "border-box",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = "#e60024";
@@ -467,6 +539,7 @@ export default function Home() {
                         fontSize: 13,
                         color: "#6b7280",
                         lineHeight: 1.6,
+                        margin: 0,
                       }}
                     >
                       {p.description}
@@ -515,8 +588,8 @@ export default function Home() {
         {/* ══ STAT + PROBLEMA / SOLUCIÓN ══ */}
         <section
           style={{
-            paddingTop: 72,
-            paddingBottom: 72,
+            paddingTop: isMobile ? 54 : 72,
+            paddingBottom: isMobile ? 54 : 72,
             borderBottom: "1.5px solid #e5e7eb",
             textAlign: "center",
           }}
@@ -531,34 +604,25 @@ export default function Home() {
               alignItems: "center",
               textAlign: "center",
               gap: 0,
-              marginBottom: 56,
+              marginBottom: isMobile ? 42 : 56,
             }}
           >
-            <div
+            <span
               style={{
-                display: "flex",
-                alignItems: "baseline",
-                gap: 0,
+                fontFamily: "'Georgia','Times New Roman',serif",
+                fontSize: "clamp(4.5rem, 28vw, 11rem)",
+                fontWeight: 900,
+                color: "#e60024",
+                letterSpacing: "-0.04em",
                 lineHeight: 1,
               }}
             >
-              <span
-                style={{
-                  fontFamily: "'Georgia','Times New Roman',serif",
-                  fontSize: "clamp(5rem,18vw,11rem)",
-                  fontWeight: 900,
-                  color: "#e60024",
-                  letterSpacing: "-0.04em",
-                  lineHeight: 1,
-                }}
-              >
-                {counter}%
-              </span>
-            </div>
+              {counter}%
+            </span>
 
             <p
               style={{
-                fontSize: "clamp(1.1rem,2.5vw,1.5rem)",
+                fontSize: "clamp(1.05rem, 5vw, 1.5rem)",
                 fontWeight: 700,
                 color: "#111",
                 marginTop: 8,
@@ -573,6 +637,7 @@ export default function Home() {
                 fontSize: 15,
                 color: "#6b7280",
                 fontWeight: 500,
+                margin: 0,
               }}
             >
               Que no te pase a ti.
@@ -592,8 +657,10 @@ export default function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: 32,
+              gridTemplateColumns: isMobile
+                ? "1fr"
+                : "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: isMobile ? 36 : 32,
               maxWidth: 900,
               margin: "0 auto",
               textAlign: "left",
@@ -608,6 +675,7 @@ export default function Home() {
                   letterSpacing: 1.2,
                   color: "#9ca3af",
                   marginBottom: 16,
+                  textAlign: isMobile ? "center" : "left",
                 }}
               >
                 ¿Por qué fallan los trámites?
@@ -649,7 +717,7 @@ export default function Home() {
                 style={{
                   marginTop: 24,
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: isSmallMobile ? "1fr" : "1fr 1fr",
                   gap: 12,
                 }}
               >
@@ -724,6 +792,7 @@ export default function Home() {
                   letterSpacing: 1.2,
                   color: "#9ca3af",
                   marginBottom: 16,
+                  textAlign: isMobile ? "center" : "left",
                 }}
               >
                 Nuestra propuesta
@@ -767,7 +836,7 @@ export default function Home() {
                   background: "#f0fdf4",
                   border: "1px solid #bbf7d0",
                   borderRadius: 12,
-                  padding: "16px 18px",
+                  padding: isMobile ? "15px 16px" : "16px 18px",
                 }}
               >
                 <p
@@ -801,8 +870,8 @@ export default function Home() {
         {/* ══ EQUIPO ══ */}
         <section
           style={{
-            paddingTop: 72,
-            paddingBottom: 80,
+            paddingTop: isMobile ? 54 : 72,
+            paddingBottom: isMobile ? 64 : 80,
             textAlign: "center",
           }}
         >
@@ -836,16 +905,18 @@ export default function Home() {
           <div
             style={{
               maxWidth: 480,
+              width: "100%",
               margin: "0 auto",
               border: "1.5px solid #e5e7eb",
               borderRadius: 20,
               overflow: "hidden",
               background: "#fff",
+              boxSizing: "border-box",
             }}
           >
             <div
               style={{
-                padding: "32px 32px 24px",
+                padding: isMobile ? "28px 20px 22px" : "32px 32px 24px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -855,8 +926,8 @@ export default function Home() {
             >
               <div
                 style={{
-                  width: 96,
-                  height: 96,
+                  width: isMobile ? 88 : 96,
+                  height: isMobile ? 88 : 96,
                   borderRadius: "50%",
                   overflow: "hidden",
                   border: "3px solid #f3f4f6",
@@ -877,22 +948,12 @@ export default function Home() {
                     objectFit: "cover",
                   }}
                 />
-
-                <span
-                  style={{
-                    fontSize: 28,
-                    fontWeight: 900,
-                    color: "#d1d5db",
-                    fontFamily: "Georgia, serif",
-                  }}
-                >
-                </span>
               </div>
 
               <p
                 style={{
                   fontWeight: 800,
-                  fontSize: 20,
+                  fontSize: isMobile ? 18 : 20,
                   color: "#111",
                   margin: "0 0 4px",
                   letterSpacing: "-0.02em",
@@ -968,22 +1029,19 @@ export default function Home() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   gap: 8,
                   background: "#eff6ff",
                   border: "1.5px solid #bfdbfe",
                   borderRadius: 12,
                   padding: "10px 20px",
+                  minHeight: 44,
                   fontSize: 13,
                   fontWeight: 700,
                   color: "#1d4ed8",
                   textDecoration: "none",
+                  flexWrap: "wrap",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#dbeafe")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "#eff6ff")
-                }
               >
                 <Linkedin size={15} />
                 Ver perfil en LinkedIn
@@ -995,11 +1053,12 @@ export default function Home() {
               style={{
                 borderTop: "1px solid #f3f4f6",
                 background: "#fafafa",
-                padding: "14px 32px",
+                padding: isMobile ? "14px 20px" : "14px 32px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
+                textAlign: "center",
               }}
             >
               <Stamp size={13} color="#9ca3af" />
@@ -1009,6 +1068,7 @@ export default function Home() {
                   fontSize: 12,
                   color: "#9ca3af",
                   margin: 0,
+                  lineHeight: 1.5,
                 }}
               >
                 <strong style={{ color: "#6b7280" }}>
@@ -1025,14 +1085,15 @@ export default function Home() {
       <footer
         style={{
           borderTop: "1.5px solid #e5e7eb",
-          padding: "24px",
+          padding: isMobile ? "22px 16px" : "24px",
           textAlign: "center",
           fontSize: 12,
           color: "#9ca3af",
+          lineHeight: 1.6,
         }}
       >
         <p style={{ margin: 0 }}>
-          © 2026 Ministerio de Relaciones Exteriores del Perú · Hackatón
+          © 2026 Hackatón
           Transformagob 2026 · Desafío 12
         </p>
       </footer>
