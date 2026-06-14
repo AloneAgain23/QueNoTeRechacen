@@ -98,7 +98,7 @@ const products = [
     id: "telegram",
     title: "Bot en Telegram",
     description:
-      "Consultas rápidas desde tu celular, disponible 24/7 en nuestra cuenta oficial.",
+      "Consultas rápidas desde tu celular, disponible 24/7 en nuestra cuenta oficial. (Si estás en tu computadora y usas Telegram Web, solo busca en tu lupa: @ApostillaFacil_Bot)",
     icon: <Send className="w-6 h-6" />,
     link: "https://t.me/ApostillaFacil_Bot",
     isExternal: true,
